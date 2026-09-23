@@ -31,8 +31,7 @@ RUN pip3 install --upgrade pip
 RUN rm -rf /usr/lib/python3/dist-packages/transforms3d*
 RUN pip3 install pyusb pyzmq transformations transforms3d posix_ipc Jinja2 mujoco "numpy<2.0.0" tomli rowan opencv-python
 
-# Copy examples and setup script
-COPY examples /examples
+# Setup script for dependencies
 COPY setup.sh /setup.sh
 
 # Run setup to clone and build components
