@@ -1,0 +1,3 @@
+[submodule "CrazySim"]
+	path = CrazySim
+	url = https://github.com/sarane-dot/CrazySim.git
