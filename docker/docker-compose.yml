@@ -1,0 +1,17 @@
+services:
+  crazyflie-sitl:
+    build: .
+    image: crazyflie_sitl:latest
+    container_name: crazyflie_sitl
+    network_mode: host
+    ipc: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev/mqueue:/dev/mqueue:rw
+      - ../examples:/examples:rw
+      - ../CrazySim:/CrazySim:rw
+    tty: true
+    stdin_open: true
