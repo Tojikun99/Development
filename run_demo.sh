@@ -38,6 +38,9 @@ echo "==========================================================================
 # Allow local X11 connections for the simulator GUI
 xhost + >/dev/null 2>&1 || true
 
+echo "[0/3] Initializing Submodules..."
+git submodule update --init --recursive
+
 echo "[1/3] Starting Docker Environment..."
 cd docker
 docker compose down 2>/dev/null || true
