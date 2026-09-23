@@ -47,7 +47,7 @@ docker compose down 2>/dev/null || true
 docker compose up --build -d
 
 echo "[2/3] Building SITL Firmware..."
-docker exec crazyflie_sitl bash -c "git config --global --add safe.directory '*' && cd /CrazySim/crazyflie-firmware && make cf2_defconfig && make silentoldconfig && mkdir -p sitl_make/build && cd sitl_make/build && cmake .. && make -j4 cf2 crazysim_gz"
+docker exec crazyflie_sitl bash -c "git config --global --add safe.directory '*' && cd /CrazySim/crazyflie-firmware && echo '{\"tag\": \"SITL\"}' > build_info.json && make cf2_defconfig && make silentoldconfig && mkdir -p sitl_make/build && cd sitl_make/build && cmake .. && make -j4 cf2 crazysim_gz"
 
 echo "[3/3] Launching $SIMULATOR Backend..."
 if [ "$SIMULATOR" == "gazebo" ]; then
