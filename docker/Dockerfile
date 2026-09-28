@@ -29,7 +29,7 @@ RUN mkdir -p /ros2_ws/src && \
 RUN pip3 install --upgrade pip
 # Remove conflicting apt version of transforms3d before pip install
 RUN rm -rf /usr/lib/python3/dist-packages/transforms3d*
-RUN pip3 install pyusb pyzmq transformations transforms3d posix_ipc Jinja2 mujoco "numpy<2.0.0" tomli rowan opencv-python
+RUN pip3 install pyusb pyzmq transformations transforms3d posix_ipc Jinja2 mujoco "numpy<2.0.0" tomli rowan opencv-python kconfiglib
 
 # Setup script for dependencies
 COPY setup.sh /setup.sh

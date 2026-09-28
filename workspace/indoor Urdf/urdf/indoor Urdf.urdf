@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="indoor Urdf">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00028325 0.0051273 0.00094497"
+        rpy="0 0 0" />
+      <mass
+        value="0.13062" />
+      <inertia
+        ixx="0.00025135"
+        ixy="1.9283E-11"
+        ixz="-7.0211E-08"
+        iyy="0.00045931"
+        iyz="5.5599E-07"
+        izz="0.00022644" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.59216 0.66667 0.68235 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Link 1">
+    <inertial>
+      <origin
+        xyz="-0.060002 -0.017895 0.06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0012256" />
+      <inertia
+        ixx="1.4864E-07"
+        ixy="-9.9767E-12"
+        ixz="2.1689E-07"
+        iyy="4.8751E-07"
+        iyz="4.5003E-12"
+        izz="3.4621E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.70196 0.70196 0.70196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Prop1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link 1" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Link 2">
+    <inertial>
+      <origin
+        xyz="-0.059998 -0.017895 -0.06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0012256" />
+      <inertia
+        ixx="1.4744E-08"
+        ixy="1.1173E-11"
+        ixz="-5.1566E-08"
+        iyy="4.875E-07"
+        iyz="-6.2373E-13"
+        izz="4.8009E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89412 0.89412 0.89412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Prop2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link 2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Link 3">
+    <inertial>
+      <origin
+        xyz="0.06 -0.017895 -0.060002"
+        rpy="0 0 0" />
+      <mass
+        value="0.0012256" />
+      <inertia
+        ixx="4.1498E-07"
+        ixy="-2.6824E-12"
+        ixz="-1.6948E-07"
+        iyy="4.8751E-07"
+        iyz="-1.0611E-11"
+        izz="7.9866E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.70196 0.70196 0.70196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Prop3"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link 3" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Link 4">
+    <inertial>
+      <origin
+        xyz="0.059998 -0.017895 0.059999"
+        rpy="0 0 0" />
+      <mass
+        value="0.0012256" />
+      <inertia
+        ixx="2.1156E-07"
+        ixy="-9.5557E-12"
+        ixz="-2.3561E-07"
+        iyy="4.875E-07"
+        iyz="-5.8047E-12"
+        izz="2.8328E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89412 0.89412 0.89412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://indoor Urdf/meshes/Link 4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Prop4"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Link 4" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

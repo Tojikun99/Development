@@ -13,5 +13,6 @@ services:
       - /dev/mqueue:/dev/mqueue:rw
       - ../examples:/examples:rw
       - ../CrazySim:/CrazySim:rw
+      - ../workspace:/workspace:rw
     tty: true
     stdin_open: true
