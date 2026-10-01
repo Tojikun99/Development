@@ -1,0 +1,42 @@
+#!/bin/bash
+# ==============================================================================
+# ROS 2 Host Wrapper Script
+# Allows running any ROS 2 command directly from the host terminal.
+# All commands execute inside the Docker environment where ROS 2 Humble
+# and Crazyswarm2 are fully installed and configured.
+#
+# Usage:
+#   ./ros2 <command> [args...]
+#
+# Examples:
+#   ./ros2 topic list
+#   ./ros2 topic echo /cf1/pose
+#   ./ros2 service list
+#   ./ros2 service call /cf1/takeoff crazyflie_interfaces/srv/Takeoff "{height: 0.5, duration: {sec: 2}}"
+#   ./ros2 service call /cf1/land crazyflie_interfaces/srv/Land "{height: 0.0, duration: {sec: 2}}"
+#   ./ros2 param list
+#   ./ros2 run crazyflie_examples hello_world
+# ==============================================================================
+
+set -e
+
+CONTAINER="crazyflie_sitl"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Ensure Docker container is running
+if ! docker ps --format '{{.Names}}' | grep -q "^${CONTAINER}$"; then
+    echo "[INFO] Container '${CONTAINER}' is not currently running. Starting..."
+    cd "${SCRIPT_DIR}/docker"
+    docker compose up -d
+    cd "${SCRIPT_DIR}"
+fi
+
+# Determine interactive / TTY mode
+DOCKER_FLAGS="-i"
+if [ -t 0 ] && [ -t 1 ]; then
+    DOCKER_FLAGS="-it"
+fi
+
+# Execute ros2 with all arguments preserved
+docker exec $DOCKER_FLAGS "${CONTAINER}" bash -c \
+    "source /opt/ros/humble/setup.bash && source /ros2_ws/install/setup.bash 2>/dev/null && export PYTHONPATH=\"/swarm2:\$PYTHONPATH\" && ros2 $(printf '%q ' "$@")"

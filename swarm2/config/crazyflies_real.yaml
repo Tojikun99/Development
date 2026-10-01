@@ -1,0 +1,111 @@
+# Configuration for 10 Real Crazyflie Drones on Same Channel with Loco Positioning System (LPS)
+fileversion: 3
+
+# All drones share the same 2.4GHz radio channel (channel 80, 2M datarate)
+# Spawn layout: cf1 starts at (1.0, 1.0, 0.0) with 1 meter spacing in X and Y
+robots:
+  cf1:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E701"
+    initial_position: [1.0, 1.0, 0.0]
+    type: cf2_lps
+
+  cf2:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E702"
+    initial_position: [2.0, 1.0, 0.0]
+    type: cf2_lps
+
+  cf3:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E703"
+    initial_position: [3.0, 1.0, 0.0]
+    type: cf2_lps
+
+  cf4:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E704"
+    initial_position: [4.0, 1.0, 0.0]
+    type: cf2_lps
+
+  cf5:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E705"
+    initial_position: [5.0, 1.0, 0.0]
+    type: cf2_lps
+
+  cf6:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E706"
+    initial_position: [1.0, 2.0, 0.0]
+    type: cf2_lps
+
+  cf7:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E707"
+    initial_position: [2.0, 2.0, 0.0]
+    type: cf2_lps
+
+  cf8:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E708"
+    initial_position: [3.0, 2.0, 0.0]
+    type: cf2_lps
+
+  cf9:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E709"
+    initial_position: [4.0, 2.0, 0.0]
+    type: cf2_lps
+
+  cf10:
+    enabled: true
+    uri: "radio://0/80/2M/E7E7E7E70A"  # Note: If your 10th drone is set to address 10 (0x10), use E7E7E7E710
+    initial_position: [5.0, 2.0, 0.0]
+    type: cf2_lps
+
+# Robot types configuration
+robot_types:
+  cf2_lps:
+    motion_capture:
+      enabled: false       # External MoCap disabled; onboard LPS provides positioning
+      tracking: "none"
+      marker: "default"
+      dynamics: "default"
+    big_quad: false
+    battery:
+      voltage_warning: 3.65   # Volts
+      voltage_critical: 3.50  # Volts
+
+# Global configuration applied to all drones
+all:
+  firmware_logging:
+    enabled: true
+    default_topics:
+      pose:
+        frequency: 5       # 5Hz live position updates (halves radio traffic to ensure smooth, non-congested flight)
+      status:
+        frequency: 1       # 1Hz battery and link quality updates
+
+  firmware_params:
+    commander:
+      enHighLevel: 1       # Enable high-level commander (takeoff, goTo, land)
+    stabilizer:
+      estimator: 2         # 2 = Extended Kalman Filter (EKF) required for LPS
+      controller: 1        # 1 = PID Controller (standard & stable for indoor flight)
+    loco:
+      mode: 0              # 0 = Auto-detect anchor mode (TDoA2/TDoA3). Do NOT use 1 (1 is TWR)
+    kalman:
+      resetEstimation: 1   # Cleanly converge and re-initialize EKF state on startup
+      robustTdoa: 1        # Enable outlier rejection for noisy UWB pulses (prevents sudden twitches/jumps)
+    posCtlPid:
+      rLimit: 15.0         # Max roll angle (deg) to prevent aggressive tilting
+      pLimit: 15.0         # Max pitch angle (deg)
+      xVelMax: 0.8         # Cap max speed (m/s) for safe, controlled position-hold
+      yVelMax: 0.8         # Cap max speed (m/s)
+      zVelMax: 0.6         # Smooth vertical climb
+
+  reference_frame: "world"
+  broadcasts:
+    num_repeats: 30
+    delay_between_repeats_ms: 8

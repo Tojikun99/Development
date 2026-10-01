@@ -5,14 +5,17 @@ services:
     container_name: crazyflie_sitl
     network_mode: host
     ipc: host
+    privileged: true
     environment:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - /dev/mqueue:/dev/mqueue:rw
+      - /dev/bus/usb:/dev/bus/usb:rw
       - ../examples:/examples:rw
       - ../CrazySim:/CrazySim:rw
       - ../workspace:/workspace:rw
+      - ../swarm2:/swarm2:rw
     tty: true
     stdin_open: true

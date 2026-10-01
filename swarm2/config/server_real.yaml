@@ -1,0 +1,13 @@
+/crazyflie_server:
+  ros__parameters:
+    warnings:
+      frequency: 1.0
+      communication:
+        max_unicast_latency: 15.0     # Radio packet latency threshold (ms)
+        min_unicast_ack_rate: 0.85
+        min_unicast_receive_rate: 0.85
+        min_broadcast_receive_rate: 0.85
+      battery:
+        check_interval: 2.0
+    firmware_params:
+      query_all_values_on_connect: false

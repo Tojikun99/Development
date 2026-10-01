@@ -1,0 +1,122 @@
+fileversion: 3
+robots:
+  cf1:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E701
+    initial_position:
+    - 1.0
+    - 1.0
+    - 0.0
+    type: cf2_lps
+  cf2:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E702
+    initial_position:
+    - 2.0
+    - 1.0
+    - 0.0
+    type: cf2_lps
+  cf3:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E703
+    initial_position:
+    - 3.0
+    - 1.0
+    - 0.0
+    type: cf2_lps
+  cf4:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E704
+    initial_position:
+    - 4.0
+    - 1.0
+    - 0.0
+    type: cf2_lps
+  cf5:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E705
+    initial_position:
+    - 5.0
+    - 1.0
+    - 0.0
+    type: cf2_lps
+  cf6:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E706
+    initial_position:
+    - 1.0
+    - 2.0
+    - 0.0
+    type: cf2_lps
+  cf7:
+    enabled: false
+    uri: radio://0/80/2M/E7E7E7E707
+    initial_position:
+    - 2.0
+    - 2.0
+    - 0.0
+    type: cf2_lps
+  cf8:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E708
+    initial_position:
+    - 3.0
+    - 2.0
+    - 0.0
+    type: cf2_lps
+  cf9:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E709
+    initial_position:
+    - 4.0
+    - 2.0
+    - 0.0
+    type: cf2_lps
+  cf10:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E70A
+    initial_position:
+    - 5.0
+    - 2.0
+    - 0.0
+    type: cf2_lps
+robot_types:
+  cf2_lps:
+    motion_capture:
+      enabled: false
+      tracking: none
+      marker: default
+      dynamics: default
+    big_quad: false
+    battery:
+      voltage_warning: 3.65
+      voltage_critical: 3.5
+all:
+  firmware_logging:
+    enabled: true
+    default_topics:
+      pose:
+        frequency: 5
+      status:
+        frequency: 1
+  firmware_params:
+    commander:
+      enHighLevel: 1
+    stabilizer:
+      estimator: 2
+      controller: 1
+    loco:
+      mode: 0
+    kalman:
+      resetEstimation: 1
+      robustTdoa: 1
+    posCtlPid:
+      rLimit: 15.0
+      pLimit: 15.0
+      xVelMax: 0.8
+      yVelMax: 0.8
+      zVelMax: 0.6
+  reference_frame: world
+  broadcasts:
+    num_repeats: 30
+    delay_between_repeats_ms: 8

@@ -1,0 +1,87 @@
+# Configuration for 10 SITL Simulated Drones (matching CrazySim UDP topology)
+fileversion: 3
+
+robots:
+  cf0:
+    enabled: true
+    uri: "udp://127.0.0.1:19850"
+    initial_position: [1.0, 1.0, 0.0]
+    type: cf2
+  cf1:
+    enabled: true
+    uri: "udp://127.0.0.1:19851"
+    initial_position: [2.0, 1.0, 0.0]
+    type: cf2
+  cf2:
+    enabled: true
+    uri: "udp://127.0.0.1:19852"
+    initial_position: [3.0, 1.0, 0.0]
+    type: cf2
+  cf3:
+    enabled: true
+    uri: "udp://127.0.0.1:19853"
+    initial_position: [4.0, 1.0, 0.0]
+    type: cf2
+  cf4:
+    enabled: true
+    uri: "udp://127.0.0.1:19854"
+    initial_position: [5.0, 1.0, 0.0]
+    type: cf2
+  cf5:
+    enabled: true
+    uri: "udp://127.0.0.1:19855"
+    initial_position: [1.0, 2.0, 0.0]
+    type: cf2
+  cf6:
+    enabled: true
+    uri: "udp://127.0.0.1:19856"
+    initial_position: [2.0, 2.0, 0.0]
+    type: cf2
+  cf7:
+    enabled: true
+    uri: "udp://127.0.0.1:19857"
+    initial_position: [3.0, 2.0, 0.0]
+    type: cf2
+  cf8:
+    enabled: true
+    uri: "udp://127.0.0.1:19858"
+    initial_position: [4.0, 2.0, 0.0]
+    type: cf2
+  cf9:
+    enabled: true
+    uri: "udp://127.0.0.1:19859"
+    initial_position: [5.0, 2.0, 0.0]
+    type: cf2
+
+robot_types:
+  cf2:
+    motion_capture:
+      enabled: false
+      tracking: "none"
+      marker: "default"
+      dynamics: "default"
+    big_quad: false
+    battery:
+      voltage_warning: 3.65
+      voltage_critical: 3.50
+
+all:
+  firmware_logging:
+    enabled: true
+    default_topics:
+      pose:
+        frequency: 10
+      status:
+        frequency: 1
+
+  firmware_params:
+    commander:
+      enHighLevel: 1
+    stabilizer:
+      estimator: 2
+      controller: 1
+
+  reference_frame: "world"
+  broadcasts:
+    num_repeats: 15
+    delay_between_repeats_ms: 1

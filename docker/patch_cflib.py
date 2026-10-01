@@ -77,10 +77,39 @@ def patch_joystick(content):
                     print('Warning: Failed to open joystick device. Continuing without joystick.')"""
     return content.replace(target, replacement)
 
+def patch_console(content):
+    return content.replace("packet.data.decode('UTF-8')", "packet.data.decode('UTF-8', errors='replace')")
+
+def patch_server(content):
+    target = """    def _connection_failed(self, link_uri, msg):
+        self.get_logger().info(f'[{self.cf_dict[link_uri]}] connection Failed')
+        self.swarm.close_links()"""
+    replacement = """    def _connection_failed(self, link_uri, msg):
+        self.get_logger().warn(f'[{self.cf_dict[link_uri]}] connection Failed: {msg} (skipping)')"""
+    return content.replace(target, replacement)
+
+def patch_crazyradio(content):
+    target = "        self.dev.set_configuration(1)"
+    replacement = """        try:
+            self.dev.set_configuration(1)
+        except Exception:
+            pass"""
+    return content.replace(target, replacement)
+
 if __name__ == "__main__":
     patch_file(os.path.join(cflib_dir, "crtp/udpdriver.py"), patch_udpdriver)
     patch_file(os.path.join(cflib_dir, "crazyflie/__init__.py"), patch_init)
+    console_file = os.path.join(cflib_dir, "crazyflie/console.py")
+    if os.path.exists(console_file):
+        patch_file(console_file, patch_console)
+    radio_file = os.path.join(cflib_dir, "drivers/crazyradio.py")
+    if os.path.exists(radio_file):
+        patch_file(radio_file, patch_crazyradio)
     
+    server_file = "/ros2_ws/src/crazyswarm2/crazyflie_server_py/crazyflie_server_py/crazyflie_server.py"
+    if os.path.exists(server_file):
+        patch_file(server_file, patch_server)
+
     joystick_file = "/ros2_ws/src/crazyswarm2/crazyflie_py/crazyflie_py/genericJoystick.py"
     if os.path.exists(joystick_file):
         patch_file(joystick_file, patch_joystick)
